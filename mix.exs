@@ -7,7 +7,22 @@ defmodule KinoPhoenixLiveView.MixProject do
       version: "0.1.0",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      description: description(),
+      deps: deps(),
+      package: package()
+    ]
+  end
+
+  def description() do
+    """
+    Allows for Phoenix LiveView integration with Livbook.
+    """
+  end
+
+  def package() do
+    [
+      licenses: ["Apache-2.0"],
+      links: %{"GitHub" => "https://github.com/elepedus/kino_phoenix_live_view"}
     ]
   end
 
