@@ -1,7 +1,27 @@
 defmodule KinoPhoenixLiveview do
   alias KinoPhoenixLiveview.{Iframe}
 
-  def new(opts) do
+  def new(path: _ = opts) do
+    init(Keyword.validate!(opts, [:path]))
+  end
+
+  def new([path: _, live_view: _] = opts) do
+    init(Keyword.validate!(opts, [:path, :live_view]))
+  end
+
+  def new([path: _, live_view: _, root_layout: _] = opts) do
+    init(Keyword.validate!(opts, [:path, :live_view, :root_layout]))
+  end
+
+  def new([path: _, router: _] = opts) do
+    init(Keyword.validate!(opts, [:path, :router]))
+  end
+
+  def new([path: _, endpoint: _] = opts) do
+    init(Keyword.validate!(opts, [:path, :endpoint]))
+  end
+
+  defp init(opts) do
     opts =
       Keyword.validate!(opts, [
         :path,
@@ -10,7 +30,6 @@ defmodule KinoPhoenixLiveview do
         router: KinoPhoenixLiveview.ProxyRouter,
         endpoint: KinoPhoenixLiveview.ProxyEndpoint
       ])
-      |> dbg()
 
     Application.put_env(:kino_phoenix_live_view, opts[:endpoint],
       server: false,
@@ -22,10 +41,14 @@ defmodule KinoPhoenixLiveview do
       url: [path: opts[:path]]
     )
 
-    Application.put_env(:kino_phoenix_live_view, :live_view, opts[:live_view])
-    Application.put_env(:kino_phoenix_live_view, :root_layout, opts[:root_layout])
-    Application.put_env(:kino_phoenix_live_view, :router, opts[:router])
-    Application.put_env(:kino_phoenix_live_view, :endpoint, opts[:endpoint])
+    Application.put_all_env(
+      kino_phoenix_live_view: [
+        endpoint: opts[:endpoint],
+        live_view: opts[:live_view],
+        root_layout: opts[:root_layout],
+        router: opts[:router],
+      ]
+    )
 
     Kino.start_child!(KinoPhoenixLiveview.Application)
     Kino.Proxy.listen(opts[:endpoint])
