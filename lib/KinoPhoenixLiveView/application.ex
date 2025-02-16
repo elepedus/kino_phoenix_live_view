@@ -1,6 +1,19 @@
 defmodule KinoPhoenixLiveview.Application do
+  @moduledoc """
+  The main application module for the Kino Phoenix LiveView integration.
+
+  This module defines the application supervision tree, which includes
+  a PubSub server, a Registry, and the configured endpoint. It is responsible
+  for starting all necessary processes for the LiveView proxy.
+  """
+
   use Application
 
+  @doc """
+  Defines the child specification for the application.
+
+  This specification is used by the supervisor to start the application.
+  """
   def child_spec(opts) do
     %{
       id: __MODULE__,
@@ -12,6 +25,20 @@ defmodule KinoPhoenixLiveview.Application do
   end
 
   @impl Application
+  @doc """
+  Starts the application supervision tree.
+
+  It starts a PubSub server, a Registry, and the configured Phoenix endpoint.
+
+  ## Parameters
+
+    - `_type`: The type of start (ignored).
+    - `_args`: The start arguments (ignored).
+
+  ## Returns
+
+    - `{:ok, pid}` on successful startup.
+  """
   def start(_type, _args) do
     children = [
       {Phoenix.PubSub, [name: KinoPhoenixLiveview.PubSub]},
