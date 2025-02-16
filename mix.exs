@@ -38,7 +38,8 @@ defmodule KinoPhoenixLiveView.MixProject do
     [
       {:kino, "~> 0.14.2"},
       {:jason, "~> 1.4"},
-      {:phoenix_live_view, "~> 1.0"}
+      {:phoenix_live_view, "~> 1.0"},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 end
