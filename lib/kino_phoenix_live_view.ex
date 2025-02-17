@@ -55,7 +55,7 @@ defmodule KinoPhoenixLiveview do
   """
   def new(opts)
 
-  def new(path: _ = opts) do
+  def new([path: _] = opts) do
     init(Keyword.validate!(opts, [:path]))
   end
 
