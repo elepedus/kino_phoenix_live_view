@@ -1,4 +1,4 @@
-defmodule KinoPhoenixLiveview.DynamicRouterPlug do
+defmodule KinoPhoenixLiveView.DynamicRouterPlug do
   @moduledoc """
   A plug that dynamically dispatches requests to a router defined in the application
   configuration.

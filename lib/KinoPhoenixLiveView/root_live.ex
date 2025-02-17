@@ -1,6 +1,6 @@
-defmodule KinoPhoenixLiveview.RootLive do
+defmodule KinoPhoenixLiveView.RootLive do
   @moduledoc """
-  The default LiveView for KinoPhoenixLiveview, used both to verify LiveView interactions
+  The default LiveView for KinoPhoenixLiveView, used both to verify LiveView interactions
   and to guide developers on how to customize the integration.
 
   This LiveView displays a simple toggle button along with instructions on how to:
@@ -45,14 +45,14 @@ defmodule KinoPhoenixLiveview.RootLive do
 
   ## Example
 
-      <h1>Welcome to KinoPhoenixLiveview!</h1>
+      <h1>Welcome to KinoPhoenixLiveView!</h1>
       <p>Current value: true</p>
       <button phx-click="toggle">Toggle Value</button>
   """
   def render(assigns) do
     ~H"""
     <div class="p-6 space-y-4">
-      <h1 class="text-2xl font-bold">Welcome to KinoPhoenixLiveview!</h1>
+      <h1 class="text-2xl font-bold">Welcome to KinoPhoenixLiveView!</h1>
       <p>
         This default LiveView is provided to help you test your Kino integration and get started.
       </p>

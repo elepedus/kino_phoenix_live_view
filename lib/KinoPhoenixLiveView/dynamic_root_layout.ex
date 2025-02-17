@@ -1,9 +1,9 @@
-defmodule KinoPhoenixLiveview.DynamicRootLayout do
+defmodule KinoPhoenixLiveView.DynamicRootLayout do
   @moduledoc """
   A plug that dynamically sets the root layout for Phoenix controllers.
 
   It retrieves the root layout module from the application environment
-  (defaulting to `KinoPhoenixLiveview.Layout`) and assigns it to the connection.
+  (defaulting to `KinoPhoenixLiveView.Layout`) and assigns it to the connection.
   """
 
   @doc """
@@ -41,7 +41,7 @@ defmodule KinoPhoenixLiveview.DynamicRootLayout do
       Application.get_env(
         :kino_phoenix_live_view,
         :root_layout,
-        KinoPhoenixLiveview.Layout
+        KinoPhoenixLiveView.Layout
       )
 
     Phoenix.Controller.put_root_layout(conn, html: {layout, :root})

@@ -1,4 +1,4 @@
-defmodule KinoPhoenixLiveview.ErrorView do
+defmodule KinoPhoenixLiveView.ErrorView do
   @moduledoc """
   A minimal error view module for rendering error messages.
 

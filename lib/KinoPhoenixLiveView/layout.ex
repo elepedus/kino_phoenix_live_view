@@ -1,4 +1,4 @@
-defmodule KinoPhoenixLiveview.Layout do
+defmodule KinoPhoenixLiveView.Layout do
   @moduledoc """
   Defines the HTML layout for the Phoenix LiveView embedded
   in a Kino iframe.
@@ -9,7 +9,7 @@ defmodule KinoPhoenixLiveview.Layout do
   """
 
   use Phoenix.Component
-  alias KinoPhoenixLiveview.ProxyEndpoint
+  alias KinoPhoenixLiveView.ProxyEndpoint
 
   @doc """
   Renders the root HTML layout.

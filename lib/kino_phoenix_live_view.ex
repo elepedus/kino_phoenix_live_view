@@ -1,4 +1,4 @@
-defmodule KinoPhoenixLiveview do
+defmodule KinoPhoenixLiveView do
   @moduledoc """
   Provides a simple interface for launching a Phoenix LiveView within a Kino widget.
 
@@ -8,35 +8,35 @@ defmodule KinoPhoenixLiveview do
 
   ## Usage
 
-  Call `KinoPhoenixLiveview.new/1` with one of the following option sets:
+  Call `KinoPhoenixLiveView.new/1` with one of the following option sets:
 
     1. **Only Path (Use All Defaults)**
        ```elixir
-       KinoPhoenixLiveview.new(path: "/proxy/apps/{slug}")
+       KinoPhoenixLiveView.new(path: "/proxy/apps/{slug}")
        ```
 
     2. **Custom LiveView**
        ```elixir
-       KinoPhoenixLiveview.new(path: "/proxy/apps/{slug}", live_view: MyApp.LiveView)
+       KinoPhoenixLiveView.new(path: "/proxy/apps/{slug}", live_view: MyApp.LiveView)
        ```
 
     3. **Custom LiveView and Layout**
        ```elixir
-       KinoPhoenixLiveview.new(path: "/proxy/apps/{slug}", live_view: MyApp.LiveView, root_layout: MyApp.Layout)
+       KinoPhoenixLiveView.new(path: "/proxy/apps/{slug}", live_view: MyApp.LiveView, root_layout: MyApp.Layout)
        ```
 
     4. **Custom Router**
        ```elixir
-       KinoPhoenixLiveview.new(path: "/proxy/apps/{slug}", router: MyApp.Router)
+       KinoPhoenixLiveView.new(path: "/proxy/apps/{slug}", router: MyApp.Router)
        ```
 
     5. **Custom Endpoint**
        ```elixir
-       KinoPhoenixLiveview.new(path: "/proxy/apps/{slug}", endpoint: MyApp.Endpoint)
+       KinoPhoenixLiveView.new(path: "/proxy/apps/{slug}", endpoint: MyApp.Endpoint)
        ```
   """
 
-  alias KinoPhoenixLiveview.Iframe
+  alias KinoPhoenixLiveView.Iframe
 
   @doc """
   Launches the Kino Phoenix LiveView integration with various configurations.
@@ -80,10 +80,10 @@ defmodule KinoPhoenixLiveview do
     opts =
       Keyword.validate!(opts, [
         :path,
-        live_view: KinoPhoenixLiveview.RootLive,
-        root_layout: KinoPhoenixLiveview.Layout,
-        router: KinoPhoenixLiveview.ProxyRouter,
-        endpoint: KinoPhoenixLiveview.ProxyEndpoint
+        live_view: KinoPhoenixLiveView.RootLive,
+        root_layout: KinoPhoenixLiveView.Layout,
+        router: KinoPhoenixLiveView.ProxyRouter,
+        endpoint: KinoPhoenixLiveView.ProxyEndpoint
       ])
 
     Application.put_env(:kino_phoenix_live_view, opts[:endpoint],
@@ -91,7 +91,7 @@ defmodule KinoPhoenixLiveview do
       adapter: Bandit.PhoenixAdapter,
       live_view: [signing_salt: "aasdffas"],
       secret_key_base: String.duplicate("a", 64),
-      pubsub_server: KinoPhoenixLiveview.PubSub,
+      pubsub_server: KinoPhoenixLiveView.PubSub,
       check_origin: false,
       url: [path: opts[:path]]
     )
@@ -105,7 +105,7 @@ defmodule KinoPhoenixLiveview do
       ]
     )
 
-    Kino.start_child!(KinoPhoenixLiveview.Application)
+    Kino.start_child!(KinoPhoenixLiveView.Application)
     Kino.Proxy.listen(opts[:endpoint])
     Iframe.start(endpoint: opts[:endpoint])
   end

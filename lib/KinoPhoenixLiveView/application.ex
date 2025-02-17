@@ -1,4 +1,4 @@
-defmodule KinoPhoenixLiveview.Application do
+defmodule KinoPhoenixLiveView.Application do
   @moduledoc """
   The main application module for the Kino Phoenix LiveView integration.
 
@@ -41,7 +41,7 @@ defmodule KinoPhoenixLiveview.Application do
   """
   def start(_type, _args) do
     children = [
-      {Phoenix.PubSub, [name: KinoPhoenixLiveview.PubSub]},
+      {Phoenix.PubSub, [name: KinoPhoenixLiveView.PubSub]},
       {Registry, [name: nil, keys: :unique]},
       Application.get_env(:kino_phoenix_live_view, :endpoint)
     ]

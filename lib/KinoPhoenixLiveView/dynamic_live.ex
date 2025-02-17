@@ -1,4 +1,4 @@
-defmodule KinoPhoenixLiveview.DynamicLive do
+defmodule KinoPhoenixLiveView.DynamicLive do
   @moduledoc """
   A dynamic LiveView module that delegates all callbacks to another LiveView.
 

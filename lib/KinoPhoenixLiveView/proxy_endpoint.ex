@@ -1,4 +1,4 @@
-defmodule KinoPhoenixLiveview.ProxyEndpoint do
+defmodule KinoPhoenixLiveView.ProxyEndpoint do
   @moduledoc """
   A Phoenix endpoint that serves as the proxy for the Kino Phoenix LiveView.
 
@@ -6,7 +6,7 @@ defmodule KinoPhoenixLiveview.ProxyEndpoint do
   and Phoenix LiveView, and uses a dynamic router plug to dispatch requests.
   """
 
-  alias KinoPhoenixLiveview.{DynamicRouterPlug}
+  alias KinoPhoenixLiveView.{DynamicRouterPlug}
 
   use Phoenix.Endpoint,
       otp_app: :kino_phoenix_live_view
@@ -18,7 +18,7 @@ defmodule KinoPhoenixLiveview.ProxyEndpoint do
   socket("/proxylive", Phoenix.LiveView.Socket,
     longpoll: true,
     websocket: false,
-    pubsub_server: KinoPhoenixLiveview.PubSub
+    pubsub_server: KinoPhoenixLiveView.PubSub
   )
 
   # Serve static assets for Phoenix.

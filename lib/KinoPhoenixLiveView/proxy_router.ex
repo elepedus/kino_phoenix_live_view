@@ -1,4 +1,4 @@
-defmodule KinoPhoenixLiveview.ProxyRouter do
+defmodule KinoPhoenixLiveView.ProxyRouter do
   @moduledoc """
   Defines the router for the Kino Phoenix LiveView proxy.
 
@@ -10,10 +10,10 @@ defmodule KinoPhoenixLiveview.ProxyRouter do
   import Phoenix.LiveView.Router
 
   pipeline :browser do
-    plug(KinoPhoenixLiveview.DynamicRootLayout)
+    plug(KinoPhoenixLiveView.DynamicRootLayout)
   end
 
-  scope "/", KinoPhoenixLiveview do
+  scope "/", KinoPhoenixLiveView do
     pipe_through(:browser)
     live("/", DynamicLive)
   end

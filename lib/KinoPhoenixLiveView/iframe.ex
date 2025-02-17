@@ -1,4 +1,4 @@
-defmodule KinoPhoenixLiveview.Iframe do
+defmodule KinoPhoenixLiveView.Iframe do
   @moduledoc """
   Provides a Kino JavaScript widget that embeds a Phoenix LiveView
   endpoint inside an iframe. This module leverages `Kino.JS` to render
@@ -22,7 +22,7 @@ defmodule KinoPhoenixLiveview.Iframe do
 
   ## Examples
 
-      iex> KinoPhoenixLiveview.Iframe.start(endpoint: MyApp.Endpoint)
+      iex> KinoPhoenixLiveView.Iframe.start(endpoint: MyApp.Endpoint)
   """
   def start(endpoint: endpoint) do
     new(src: apply(endpoint, :path, ["/"]))
@@ -41,7 +41,7 @@ defmodule KinoPhoenixLiveview.Iframe do
 
   ## Examples
 
-      iex> KinoPhoenixLiveview.Iframe.new(src: "http://localhost:4000/")
+      iex> KinoPhoenixLiveView.Iframe.new(src: "http://localhost:4000/")
   """
   def new(src: src) do
     Kino.JS.new(__MODULE__, src)
