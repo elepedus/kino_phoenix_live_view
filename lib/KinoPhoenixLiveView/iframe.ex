@@ -52,6 +52,7 @@ defmodule KinoPhoenixLiveView.Iframe do
     export function init(ctx, src) {
       const iframe = document.createElement('iframe')
       iframe.setAttribute("src", src)
+      iframe.setAttribute("sandbox", "allow-scripts allow-same-origin allow-downloads allow-forms allow-modals allow-popups allow-top-navigation");
       iframe.style.width = "100%"
       iframe.style.height = "660px"
       iframe.style.border = "none"
