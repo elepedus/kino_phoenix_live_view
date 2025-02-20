@@ -53,26 +53,37 @@ defmodule KinoPhoenixLiveView do
 
   **Note:** Each call must include a `:path` key. Do not mix incompatible options.
   """
-  def new(opts)
+  @spec new(path: String.t()) :: any
+  @spec new(path: String.t(), live_view: module()) :: any
+  @spec new(path: String.t(), live_view: module(), root_layout: module()) :: any
+  @spec new(path: String.t(), router: module()) :: any
+  @spec new(path: String.t(), endpoint: module()) :: any
+  def new(opts) when is_list(opts) do
+    path = Keyword.get(opts, :path)
+    endpoint = Keyword.get(opts, :endpoint)
+    router = Keyword.get(opts, :router)
+    live_view = Keyword.get(opts, :live_view)
+    root_layout = Keyword.get(opts, :root_layout)
 
-  def new([path: _] = opts) do
-    init(Keyword.validate!(opts, [:path]))
-  end
+    unless path do
+      raise ArgumentError, "Missing required option :path"
+    end
 
-  def new([path: _, live_view: _] = opts) do
-    init(Keyword.validate!(opts, [:path, :live_view]))
-  end
+    if endpoint do
+      with {:error, extra} <- Keyword.validate(opts, [:path, :endpoint]) do
+        raise ArgumentError,
+              "Invalid config. Custom endpoint overrides #{inspect(extra)} option(s)."
+      end
+    end
 
-  def new([path: _, live_view: _, root_layout: _] = opts) do
-    init(Keyword.validate!(opts, [:path, :live_view, :root_layout]))
-  end
+    if router do
+      with {:error, extra} <- Keyword.validate(opts, [:path, :router]) do
+        raise ArgumentError,
+              "Invalid config. Custom router overrides #{inspect(extra)} option(s)."
+      end
+    end
 
-  def new([path: _, router: _] = opts) do
-    init(Keyword.validate!(opts, [:path, :router]))
-  end
-
-  def new([path: _, endpoint: _] = opts) do
-    init(Keyword.validate!(opts, [:path, :endpoint]))
+    init(opts)
   end
 
   @doc false
